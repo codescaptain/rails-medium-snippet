@@ -22,17 +22,17 @@ class MediumArticleService
 
   def make_svg
     <<-SVG
-  <svg fill="none" width="400" height="400" xmlns="http://www.w3.org/2000/svg" style="min-width: 400px; min-height: 400px;">
+  <svg fill="none" width="300" height="450" xmlns="http://www.w3.org/2000/svg">
 	<foreignObject width='100%' height='100%'>
     #{style}
 		<div xmlns='http://www.w3.org/1999/xhtml'>
       <div class="container">
-        <div class="flex-container" style="padding: 20px">
+        <div class="flex-container" style="padding: 10px">
+          <div class="">
+            <img src='data:image/jpeg;base64,#{base64_image}' alt='' />
           <div class="pub-date">
                <span style="">#{@article_item['pubDate']}</span>
           </div>
-          <div class="">
-            <img src='data:image/jpeg;base64,#{base64_image}' alt='' />
           </div>
           <div class="flex-col">
             <h2>#{@article_item['title']}</h2>
@@ -105,10 +105,6 @@ class MediumArticleService
             align-items: center;
             justify-content: center;
         }
-        
-        img{
-        display: none;
-        }
       }
   
         img {
@@ -140,10 +136,10 @@ class MediumArticleService
         }
         
         .pub-date{
-        left:25px;
-        top:10px;
-        position: absolute;
+        text-align: center;
         font-weight: 900;
+        font-size: smaller;
+        opacity: 0.75;
         }
     
         .category-container{
@@ -161,6 +157,7 @@ class MediumArticleService
           -webkit-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
           -moz-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
           box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
+          font-size: small;
         }
       </style>
     CSS
