@@ -4,6 +4,8 @@
 
 The Medium Snippet API allows users to retrieve and display the latest 10 Medium articles for a given username. Users can add these articles to their GitHub profiles by providing the `username` and `index` parameters.
 
+### NOTE: Only available for  Dark Mode. - Right now The snippets are not responsive. (I am working on it 🫡)
+
 
 ### Examples
 
