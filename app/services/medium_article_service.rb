@@ -21,7 +21,7 @@ class MediumArticleService
 
   def make_svg
     <<-SVG
-<svg fill="red" width="600" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" style="max-width: 100%; height: auto;">
+<svg fill="red" width="800" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-width: 100%; height: auto;">
 	<foreignObject width='100%' height='100%'>
     #{style}
 		<div xmlns='http://www.w3.org/1999/xhtml'>
