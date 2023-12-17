@@ -89,7 +89,6 @@ class MediumArticleService
           flex-direction: column;
           background-color: white;
           align-items: center;
-          margin-top: 5px;
         }
         h2 {
           margin-bottom: 10px;
