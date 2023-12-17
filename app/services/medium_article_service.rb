@@ -18,10 +18,6 @@ class MediumArticleService
   private
 
   def make_svg
-    image_url = "https://cdn.pixabay.com/photo/2017/03/15/20/40/nature-2147400_1280.jpg"
-    image_data =  URI.open(image_url) { |f| f.read }
-    base64_image = Base64.encode64(image_data).gsub("\n", '')
-
     <<-SVG
 <svg fill='none' width='600' height='250' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 250'>
 	<foreignObject width='100%' height='100%'>
@@ -42,6 +38,12 @@ class MediumArticleService
   </foreignObject>
 </svg>
     SVG
+  end
+
+  def base64_image
+    image_url = "https://cdn.pixabay.com/photo/2017/03/15/20/40/nature-2147400_1280.jpg"
+    image_data = URI.open(image_url) { |f| f.read }
+    Base64.encode64(image_data).gsub("\n", '')
   end
 
   def get_medium_articles
