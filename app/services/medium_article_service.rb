@@ -6,9 +6,11 @@ class MediumArticleService
 
   def initialize(username, index = 0)
     @username = username
-    @index = index
+    @index = index.nil? ? 0 : index
     @url = URI("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/#{@username}")
     @articles = get_medium_articles
+    @article_item = @articles['items'][index.to_i]
+    @article_categories = @article_item['categories']
   end
 
   def call
@@ -24,15 +26,20 @@ class MediumArticleService
     #{style}
 		<div xmlns='http://www.w3.org/1999/xhtml'>
       <div class="container">
-        <div class="flex-container" style="padding: 5px">
+        <div class="flex-container" style="padding: 20px">
+          <div class="pub-date">
+               <span style="">#{@article_item['pubDate']}</span>
+          </div>
           <div class="">
             <img src='data:image/jpeg;base64,#{base64_image}' alt='' />
           </div>
           <div class="flex-col">
-            <h2>#{@articles['items'][0]['title']}</h2>
-            <p>#{@articles['items'][0]['description'].gsub(/<\/?[^>]+(>|$)/, "").split('.').first}...</p>
+            <h2>#{@article_item['title']}</h2>
+            <p>#{description}...</p>
+            #{categories_html}
           </div>
         </div>
+
       </div>
     </div>
   </foreignObject>
@@ -41,9 +48,25 @@ class MediumArticleService
   end
 
   def base64_image
-    image_url = "https://cdn.pixabay.com/photo/2017/03/15/20/40/nature-2147400_1280.jpg"
+    image_url = src_link(@article_item['description'])
     image_data = URI.open(image_url) { |f| f.read }
     Base64.encode64(image_data).gsub("\n", '')
+  end
+
+  def src_link(text)
+    text.match(/src=\"(.*?)\"/)&.captures&.first
+  end
+
+  def description
+    @article_item['description'].gsub(/<\/?[^>]+(>|$)/, "").split('.').first
+  end
+
+  def categories_html
+    categories_html= "<div class='category-container'>"
+    @article_categories.each do |category|
+      categories_html += "<span class = 'the-category'>#{category}</span>"
+    end
+    categories_html += "</div>"
   end
 
   def get_medium_articles
@@ -60,50 +83,65 @@ class MediumArticleService
   def style
     <<-CSS
     <style>
-      @media (max-width: 480px) {
+  @media (max-width: 480px) {
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      align-items: center;
+    }
+    h2 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  
+    p {
+      text-align: center;
+     }
+    }
+
+  img {
+    max-width: 150px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
   .flex-container {
     display: flex;
-    flex-direction: column;
     background-color: white;
     align-items: center;
+    -webkit-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
+    -moz-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
+    box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
+    border-radius:20px;
+    max-width: 700px;
+    position: relative;
   }
+
+  .flex-col {
+    flex-direction: column;
+    display: flex;
+    margin-left: 1rem;
+  }
+
   h2 {
-    margin-bottom: 10px;
-    text-align: center;
+    margin-bottom: 0px;
   }
-
-  p {
-    text-align: center;
+  
+  .pub-date{
+  left:25px;
+  top:10px;
+  position: absolute;
+  font-weight: 900;
   }
-}
-
-img {
-  max-width: 150px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.flex-container {
+  
+  .category-container{
   display: flex;
-  background-color: white;
-  align-items: center;
-  -webkit-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
--moz-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
-box-shadow: 9px 10px 28px -7px rgba(128,112,128,0.71);
-  border-radius:20px;
-  max-width: 700px;
-}
-
-.flex-col {
-  flex-direction: column;
-  display: flex;
-  margin-left: 1rem;
-}
-
-h2 {
-  margin-bottom: 0px;
-}
-
+  }
+  
+  .the-category{
+    margin-left: 5px;
+  }
     </style>
     CSS
   end
