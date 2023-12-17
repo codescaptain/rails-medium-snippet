@@ -21,7 +21,7 @@ class MediumArticleService
 
   def make_svg
     <<-SVG
-<svg fill='none' width='600' height='250' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 250'>
+<svg fill='none' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
 	<foreignObject width='100%' height='100%'>
     #{style}
 		<div xmlns='http://www.w3.org/1999/xhtml'>
@@ -89,17 +89,23 @@ class MediumArticleService
           flex-direction: column;
           background-color: white;
           align-items: center;
+          margin-top: 5px;
         }
         h2 {
           margin-bottom: 10px;
           text-align: center;
-          font-family: 'Raleway', sans-serif;
         }
       
         p {
           text-align: center;
          }
+         
+        .category-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+      }
   
         img {
           max-width: 150px;
