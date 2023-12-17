@@ -1,24 +1,44 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Medium Snippet API
 
-* Ruby version
+The Medium Snippet API allows users to retrieve and display the latest 10 Medium articles for a given username. Users can add these articles to their GitHub profiles by providing the `username` and `index` parameters.
 
-* System dependencies
 
-* Configuration
+### Examples
 
-* Database creation
+[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=0)](#)
 
-* Database initialization
+## Getting Started
 
-* How to run the test suite
+### Installation
+No installation is required. Simply use the following link to access the API:
 
-* Services (job queues, cache servers, search engines, etc.)
+### Usage
+The gem finds articles from username with this links:
 
-* Deployment instructions
+```html
+https://medium-snippet-dc633c4f39a0.herokuapp.com
+```
 
-* ...
+- username: your medium username/profile
+- index : your recent article index. e.g: 0 means your latest article.
+
+### Example Medium
+
+#### Code:
+
+```html
+https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=1
+
+https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=0
+```
+#### Output:
+[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=1)](#)
+[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=0)](#)
+
+
+
+## Contact
+
+For inquiries, you can reach out through my [GitHub Profile](https://github.com/codescaptain).
