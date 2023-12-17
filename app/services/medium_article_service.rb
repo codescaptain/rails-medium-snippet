@@ -22,7 +22,7 @@ class MediumArticleService
 
   def make_svg
     <<-SVG
-  <svg fill="none" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="min-width: 500px; min-height: 250px;">
+  <svg fill="none" width="400" height="400" xmlns="http://www.w3.org/2000/svg" style="min-width: 400px; min-height: 400px;">
 	<foreignObject width='100%' height='100%'>
     #{style}
 		<div xmlns='http://www.w3.org/1999/xhtml'>
@@ -104,6 +104,10 @@ class MediumArticleService
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        img{
+        display: none;
         }
       }
   
