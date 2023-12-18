@@ -17,14 +17,14 @@ The Medium Snippet API allows users to retrieve and display the latest 10 Medium
 No installation is required. Simply use the following link to access the API:
 
 ### Usage
-The gem finds articles from username with this links:
+The API finds articles from username with this link:
 
 ```html
 https://medium-snippet-dc633c4f39a0.herokuapp.com
 ```
 
 - username: your medium username/profile
-- index : your recent article index. e.g: 0 means your latest article.
+- index: your recent article index. e.g.: 0 means your latest article.
 
 ### Example Medium
 
