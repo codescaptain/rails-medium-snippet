@@ -1,10 +1,10 @@
-class MediumArticleService < BaseService
+class DevToArticleService < BaseService
   attr_accessor :username, :url, :index
 
   def initialize(username, index = 0)
-    @username = username
+    @username = username.split('@')[1]
     @index = index.nil? ? 0 : index
-    @url = URI("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/#{@username}")
+    @url = URI("https://api.rss2json.com/v1/api.json?rss_url=https://dev.to/feed/#{@username}")
     @articles = get_medium_articles(@url)
     @article_item = @articles['items'][index.to_i]
     @article_categories = @article_item['categories']
@@ -28,15 +28,15 @@ class MediumArticleService < BaseService
 
   def base64_image
     image_url = src_link(@article_item['description'])
-    if image_url.present?
-      image_data = URI.open(image_url) { |f| f.read }
-      Base64.encode64(image_data).gsub("\n", '')
-    end
+    image_data = if image_url.present?
+                   URI.open(image_url) { |f| f.read }
+                 else
+                   URI.open('https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png') { |f| f.read }
+                 end
+    Base64.encode64(image_data).gsub("\n", '')
+
   end
 
-  def description
-    @article_item['description'].gsub(/<\/?[^>]+(>|$)/, "").split('.').first
-  end
 
   def categories_html
     categories_html = "<div class='category-container'>"
@@ -44,5 +44,9 @@ class MediumArticleService < BaseService
       categories_html += "<span class = 'the-category'>#{category}</span>"
     end
     categories_html += "</div>"
+  end
+
+  def description
+    @article_item['content'].gsub(/<\/?[^>]+(>|$)/, "").split('.').first
   end
 end
