@@ -37,8 +37,8 @@ https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@code
 https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=0&source=dev_to
 ```
 #### Output:
-[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=1)](#)
-[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=0)](#)
+[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=1&source=medium)](#)
+[![My Medium story](https://medium-snippet-dc633c4f39a0.herokuapp.com/api/article.svg?username=@codescaptain&index=0&source=medium)](#)
 
 
 
