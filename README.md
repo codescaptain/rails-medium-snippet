@@ -4,6 +4,8 @@
 
 The Medium Snippet API allows users to retrieve and display the latest 10 **Medium** or **Dev.to** articles for a given username. Users can add these articles to their GitHub profiles by providing the `username` and `index` parameters.
 
+[![Open Source Helpers](https://www.codetriage.com/codescaptain/rails-medium-snippet/badges/users.svg)](https://www.codetriage.com/codescaptain/rails-medium-snippet)
+
 ### NOTE: Only available for  Dark Mode. (I am working on it 🫡)
 
 
